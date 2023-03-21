@@ -113,7 +113,7 @@ a {
     color: white;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 600px) {
     .container {
         width: 300px;
         height: 770px;
