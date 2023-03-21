@@ -1,3 +1,14 @@
+let frase = document.getElementById("textoDeEntrada");
+let resultado = document.getElementById("textoDeSaida");
+let botarMaiusculo = document.getElementById("botao1");
+let botarMinusculo = document.getElementById("botao2");
+let botarFormatado = document.getElementById("botao3");
+
+let textoFormatado = [];
+let fraseEntrada = frase.value;
+
+// resultado.innerText = textoFormatado;
+
 const formatarPalavra = (palavra) => {
     let primeiraLetra = palavra.charAt(0).toUpperCase();
     let restoPalavra = palavra.substring(1).toLowerCase();
@@ -32,14 +43,30 @@ const ultimaPalavra = (array) => {
     return lastWord;
 }
 
+const tudoEmMaiusculo = (texto) => {
+    return textoMaiusculo = texto.toUpperCase();
+}
 
-let textoFormatado = [];
+botarMaiusculo.addEventListener('click', function(){
+    resultado.innerHTML = tudoEmMaiusculo(frase.value);
+});
+
+botarMinusculo.addEventListener('click', function(){
+    resultado.innerHTML = tudoEmMinusculo(frase.value);
+});
+
+
+const tudoEmMinusculo = (texto) => {
+    return textoMinusculo = texto.toLowerCase();
+}
+
 
 const textoEntrada = (frase) => {
 
     const formatarTexto = (array) => {
 
         array.forEach(function(palavraAtual){
+        
    
            //FORMATA A PRIMEIRA PALAVRA DO TEXTO E SE ELA TERMINAR COM PONTUACAO, A PROXIMA PALAVRA SERA DEVOLVIDA FORMATADA 
            if (array.indexOf(palavraAtual) == 0) {
@@ -62,12 +89,21 @@ const textoEntrada = (frase) => {
                                      //SE A PALAVRA ATUAL FORMATADA FOR DIFERENTE DA ANTERIOR, MANDA A PALAVRA NORMAL  
                                     if (formatarPalavra(palavraAtual) !== ultimaPalavra(textoFormatado)) {
       
-                                        textoFormatado.push(palavraAtual);
+                                        textoFormatado.push(palavraAtual.toLowerCase());
+
                                         //SEGURANÇA E VERIFICAÇÃO
                                         if ((array[proximoElemento(array.indexOf((palavraAtual)))] !== undefined)) {
+
                                             //FORMATA A PROXIMA PALAVRA DO ARRAY
-                                            textoFormatado.push(formatarPalavra(array[proximoElemento(array.indexOf(palavraAtual))]));
+                                            if (array[proximoElemento(array.indexOf(palavraAtual))] !== array[proximoElemento(array.indexOf(palavraAtual))].toUpperCase()) {
+                                                textoFormatado.push(formatarPalavra(array[proximoElemento(array.indexOf(palavraAtual))]));
+                                            } else {
+                                                textoFormatado.push(formatarPalavra(array[proximoElemento(array.indexOf(palavraAtual))]));
+                                            }
+                                        } else {
+                                            return;
                                         }
+
                                     //SE A PALAVRA ATUAL FORMATADA FOR IGUAL A ANTERIOR
                                     } else {
                                         //SEGURANÇA E VERIFICAÇÃO
@@ -96,13 +132,13 @@ const textoEntrada = (frase) => {
                             if (array[proximoElemento(array.indexOf(palavraAtual))] !== undefined) {
                                 //SE A PALAVRA ATUAL FORMATADA FOR DIFERENTE DA ANTERIOR, IMPRIMA A PALAVRA NORMAL
                                 if (formatarPalavra(palavraAtual) !== ultimaPalavra(textoFormatado)) {
-                                    textoFormatado.push(palavraAtual);
+                                    textoFormatado.push(palavraAtual.toLowerCase());
                                 }
                             //SE FOR A ULTIMA PALAVRA DO ARRAY
                             } else {
                                 //SE A PALAVRA ATUAL FORMATADA FOR DIFERENTE DA ANTERIOR, IMPRIMA A PALAVRA NORMAL
                                 if (formatarPalavra(palavraAtual) !== ultimaPalavra(textoFormatado)) {
-                                    textoFormatado.push(palavraAtual);
+                                    textoFormatado.push(palavraAtual.toLowerCase());
                                 }
                             }
 
@@ -116,14 +152,11 @@ const textoEntrada = (frase) => {
     );
    }
     
-   
-   
-   formatarTexto(array = frase.split(" "));
-   console.log(textoFormatado.join(' '));
-    
+   textoFormatado = [''];
+   formatarTexto(frase.split(" "));
+   return textoFormatado.join(' ');    
 }
 
-
-console.log("finalmente isso deu certo =)");
-console.log("esse é a saida:");
-textoEntrada("finalmente isso deu certo =)");
+botarFormatado.addEventListener('click', function(){
+    resultado.innerHTML = textoEntrada(frase.value);
+});

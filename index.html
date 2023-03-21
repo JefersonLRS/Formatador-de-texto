@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formatador de textos</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>oi js</h1>
-    <script src="script.js"></script>
+    <main>
+        <div class="container">
+            <h1>FORMATADOR DE TEXTO</h1>
+            <div class="funcional">
+                <h2>COLOQUE SEU TEXTO AQUI</h2>
+                <textarea name="textoEntrada" id="textoDeEntrada" rows="10" placeholder="Digite seu texto aqui..."></textarea>
+                    <h2>ESCOLHA A FORMATAÇÃO</h2>
+                    <div class="botoes">
+                        <button class="botao" id="botao1">TUDO MAIUSCULO</button>
+                        <button class="botao" id="botao2">TUDO MINUSCULO</button>
+                        <button class="botao" id="botao3">MAIUSCULO E MINUSCULO</button>
+                    </div>
+                    <div class="saida" id="textoDeSaida"></div>
+            </div>
+        </div>
+    </main>
+    <footer><span>Site desenvolvido por <a href="https://github.com/httpjef" target="_blank">Jeferson Luís</a></span> <span>Todos os direitos reservados.</span></footer>
+    <script src="formatador.js"></script>
 </body>
 </html>
